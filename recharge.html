@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Nạp tiền - SHOPCLONE6</title>
+    <meta name="description" content="Nạp tiền vào tài khoản SHOPCLONE6" />
+    <link rel="shortcut icon" href="assets/img/favicon.png" />
+    <link rel="stylesheet" href="public/datum/assets/css/backend-plugin.min.css">
+    <link rel="stylesheet" href="public/datum/assets/css/backend.css?v=1.0.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link class="main-stylesheet" href="public/sweetalert2/default.css" rel="stylesheet" type="text/css">
+    <script src="public/sweetalert2/sweetalert2.js"></script>
+    <link class="main-stylesheet" href="public/cute-alert/style.css" rel="stylesheet" type="text/css">
+    <script src="public/cute-alert/cute-alert.js"></script>
+    <script src="public/js/jquery-3.6.0.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .card-product {
+            color: white;
+            background-image: linear-gradient(to right, #007bff, #007bff, #6c757d);
+        }
+        .payment-method {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .payment-method:hover {
+            border-color: #007bff;
+            background-color: #f8f9fa;
+        }
+        .payment-method.active {
+            border-color: #007bff;
+            background-color: #e3f2fd;
+        }
+        .bank-info {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        .qr-code {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .qr-code img {
+            max-width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="color-light">
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <div class="iq-sidebar sidebar-default">
+            <div class="iq-sidebar-logo d-flex align-items-end justify-content-between">
+                <a href="index.html" class="header-logo">
+                    <img src="assets/img/favicon.png" class="img-fluid rounded-normal light-logo" alt="logo">
+                    <span>SHOPCLONE6</span>
+                </a>
+            </div>
+            <div class="data-scrollbar" data-scroll="1">
+                <nav class="iq-sidebar-menu">
+                    <ul id="iq-sidebar-toggle" class="side-menu">
+                        <li class="px-3 pt-3 pb-2">
+                            <span class="text-uppercase small font-weight-bold">Số dư <span style="color: yellow;">0 VNĐ</span></span>
+                        </li>
+                        <li class="sidebar-layout">
+                            <a href="index.html" class="svg-icon">
+                                <i class="fas fa-home"></i>
+                                <span class="ml-2">Bảng Điều Khiển</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-layout">
+                            <a href="shop-account.html" class="svg-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="ml-2">Mua Tài Khoản</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-layout">
+                            <a href="orders.html" class="svg-icon">
+                                <i class="fas fa-history"></i>
+                                <span class="ml-2">Lịch Sử Mua Hàng</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-layout active">
+                            <a href="recharge.html" class="svg-icon">
+                                <i class="fas fa-university"></i>
+                                <span class="ml-2">Nạp Tiền</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-page">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header card-product d-flex justify-content-between">
+                                <div class="header-title">
+                                    <h5 class="card-title" style="color:white;">
+                                        <i class="fas fa-university mr-2"></i>Nạp Tiền Vào Tài Khoản
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <h6><strong>Chọn phương thức thanh toán:</strong></h6>
+                                        
+                                        <!-- Bank Transfer -->
+                                        <div class="payment-method" onclick="selectPaymentMethod('bank')">
+                                            <div class="d-flex align-items-center">
+                                                <input type="radio" name="paymentMethod" value="bank" id="bank" class="mr-3">
+                                                <i class="fas fa-university fa-2x text-primary mr-3"></i>
+                                                <div>
+                                                    <h6 class="mb-1">Chuyển khoản ngân hàng</h6>
+                                                    <small class="text-muted">Chuyển khoản qua ngân hàng Việt Nam</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- MOMO -->
+                                        <div class="payment-method" onclick="selectPaymentMethod('momo')">
+                                            <div class="d-flex align-items-center">
+                                                <input type="radio" name="paymentMethod" value="momo" id="momo" class="mr-3">
+                                                <i class="fas fa-mobile-alt fa-2x text-danger mr-3"></i>
+                                                <div>
+                                                    <h6 class="mb-1">Ví MOMO</h6>
+                                                    <small class="text-muted">Thanh toán qua ví điện tử MOMO</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Zalo Pay -->
+                                        <div class="payment-method" onclick="selectPaymentMethod('zalopay')">
+                                            <div class="d-flex align-items-center">
+                                                <input type="radio" name="paymentMethod" value="zalopay" id="zalopay" class="mr-3">
+                                                <i class="fas fa-wallet fa-2x text-info mr-3"></i>
+                                                <div>
+                                                    <h6 class="mb-1">Zalo Pay</h6>
+                                                    <small class="text-muted">Thanh toán qua ví Zalo Pay</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Crypto -->
+                                        <div class="payment-method" onclick="selectPaymentMethod('crypto')">
+                                            <div class="d-flex align-items-center">
+                                                <input type="radio" name="paymentMethod" value="crypto" id="crypto" class="mr-3">
+                                                <i class="fab fa-bitcoin fa-2x text-warning mr-3"></i>
+                                                <div>
+                                                    <h6 class="mb-1">Cryptocurrency</h6>
+                                                    <small class="text-muted">Thanh toán bằng Bitcoin, USDT</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Amount Input -->
+                                        <div class="form-group mt-4">
+                                            <label for="amount"><strong>Số tiền cần nạp:</strong></label>
+                                            <div class="input-group">
+                                                <input type="number" class="form-control" id="amount" placeholder="Nhập số tiền" min="10000">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">VNĐ</span>
+                                                </div>
+                                            </div>
+                                            <small class="text-muted">Số tiền tối thiểu: 10,000 VNĐ</small>
+                                        </div>
+
+                                        <!-- Quick Amount Buttons -->
+                                        <div class="mb-3">
+                                            <label><strong>Chọn nhanh:</strong></label>
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-outline-primary" onclick="setAmount(50000)">50K</button>
+                                                <button type="button" class="btn btn-outline-primary" onclick="setAmount(100000)">100K</button>
+                                                <button type="button" class="btn btn-outline-primary" onclick="setAmount(200000)">200K</button>
+                                                <button type="button" class="btn btn-outline-primary" onclick="setAmount(500000)">500K</button>
+                                                <button type="button" class="btn btn-outline-primary" onclick="setAmount(1000000)">1M</button>
+                                            </div>
+                                        </div>
+
+                                        <!-- Payment Details -->
+                                        <div id="paymentDetails" style="display: none;">
+                                            <h6><strong>Thông tin thanh toán:</strong></h6>
+                                            <div id="bankDetails" class="bank-info" style="display: none;">
+                                                <h6><strong>Thông tin chuyển khoản:</strong></h6>
+                                                <p><strong>Ngân hàng:</strong> Vietcombank</p>
+                                                <p><strong>Số tài khoản:</strong> 1234567890</p>
+                                                <p><strong>Chủ tài khoản:</strong> NGUYEN VAN A</p>
+                                                <p><strong>Nội dung chuyển khoản:</strong> <span id="transferContent">NAP_[USER_ID]_[AMOUNT]</span></p>
+                                            </div>
+
+                                            <div id="momoDetails" class="bank-info" style="display: none;">
+                                                <h6><strong>Thông tin MOMO:</strong></h6>
+                                                <p><strong>Số điện thoại:</strong> 0901234567</p>
+                                                <p><strong>Tên:</strong> NGUYEN VAN A</p>
+                                                <p><strong>Nội dung:</strong> <span id="momoContent">NAP_[USER_ID]_[AMOUNT]</span></p>
+                                                <div class="qr-code">
+                                                    <img src="https://via.placeholder.com/200x200?text=MOMO+QR" alt="MOMO QR Code">
+                                                    <p><small>Quét mã QR để thanh toán</small></p>
+                                                </div>
+                                            </div>
+
+                                            <div id="zalopayDetails" class="bank-info" style="display: none;">
+                                                <h6><strong>Thông tin Zalo Pay:</strong></h6>
+                                                <p><strong>Số điện thoại:</strong> 0901234567</p>
+                                                <p><strong>Tên:</strong> NGUYEN VAN A</p>
+                                                <p><strong>Nội dung:</strong> <span id="zalopayContent">NAP_[USER_ID]_[AMOUNT]</span></p>
+                                                <div class="qr-code">
+                                                    <img src="https://via.placeholder.com/200x200?text=ZALOPAY+QR" alt="Zalo Pay QR Code">
+                                                    <p><small>Quét mã QR để thanh toán</small></p>
+                                                </div>
+                                            </div>
+
+                                            <div id="cryptoDetails" class="bank-info" style="display: none;">
+                                                <h6><strong>Thông tin Crypto:</strong></h6>
+                                                <p><strong>Bitcoin (BTC):</strong> bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</p>
+                                                <p><strong>USDT (TRC20):</strong> TQn9Y2khEsLJW1ChVWFMSMeRDow5KcbLSE</p>
+                                                <p><strong>Ethereum (ETH):</strong> 0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6</p>
+                                                <p><strong>Nội dung:</strong> <span id="cryptoContent">NAP_[USER_ID]_[AMOUNT]</span></p>
+                                            </div>
+
+                                            <div class="alert alert-info mt-3">
+                                                <i class="fas fa-info-circle mr-2"></i>
+                                                <strong>Lưu ý:</strong> Sau khi chuyển khoản, vui lòng chờ 5-10 phút để hệ thống xử lý. 
+                                                Nếu sau 30 phút chưa nhận được tiền, vui lòng liên hệ hỗ trợ.
+                                            </div>
+
+                                            <button class="btn btn-success btn-lg btn-block" onclick="confirmPayment()">
+                                                <i class="fas fa-check mr-2"></i>Xác nhận đã chuyển khoản
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h6 class="mb-0"><i class="fas fa-info-circle mr-2"></i>Hướng dẫn nạp tiền</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <ol class="mb-0">
+                                                    <li>Chọn phương thức thanh toán</li>
+                                                    <li>Nhập số tiền cần nạp</li>
+                                                    <li>Chuyển khoản theo thông tin được cung cấp</li>
+                                                    <li>Nhập đúng nội dung chuyển khoản</li>
+                                                    <li>Chờ hệ thống xử lý (5-10 phút)</li>
+                                                    <li>Kiểm tra số dư tài khoản</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+
+                                        <div class="card mt-3">
+                                            <div class="card-header">
+                                                <h6 class="mb-0"><i class="fas fa-history mr-2"></i>Lịch sử nạp tiền</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-sm">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Thời gian</th>
+                                                                <th>Số tiền</th>
+                                                                <th>Trạng thái</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>15/01/2024</td>
+                                                                <td>500,000 VNĐ</td>
+                                                                <td><span class="badge badge-success">Thành công</span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>14/01/2024</td>
+                                                                <td>200,000 VNĐ</td>
+                                                                <td><span class="badge badge-success">Thành công</span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>13/01/2024</td>
+                                                                <td>100,000 VNĐ</td>
+                                                                <td><span class="badge badge-warning">Đang xử lý</span></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectPaymentMethod(method) {
+            // Remove active class from all methods
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Add active class to selected method
+            event.currentTarget.classList.add('active');
+            
+            // Check the radio button
+            document.getElementById(method).checked = true;
+            
+            // Show payment details
+            showPaymentDetails(method);
+        }
+
+        function showPaymentDetails(method) {
+            const amount = document.getElementById('amount').value;
+            if (!amount || amount < 10000) {
+                alert('Vui lòng nhập số tiền tối thiểu 10,000 VNĐ');
+                return;
+            }
+
+            document.getElementById('paymentDetails').style.display = 'block';
+            
+            // Hide all payment details
+            document.getElementById('bankDetails').style.display = 'none';
+            document.getElementById('momoDetails').style.display = 'none';
+            document.getElementById('zalopayDetails').style.display = 'none';
+            document.getElementById('cryptoDetails').style.display = 'none';
+            
+            // Show selected payment details
+            if (method === 'bank') {
+                document.getElementById('bankDetails').style.display = 'block';
+                document.getElementById('transferContent').textContent = `NAP_USER123_${amount}`;
+            } else if (method === 'momo') {
+                document.getElementById('momoDetails').style.display = 'block';
+                document.getElementById('momoContent').textContent = `NAP_USER123_${amount}`;
+            } else if (method === 'zalopay') {
+                document.getElementById('zalopayDetails').style.display = 'block';
+                document.getElementById('zalopayContent').textContent = `NAP_USER123_${amount}`;
+            } else if (method === 'crypto') {
+                document.getElementById('cryptoDetails').style.display = 'block';
+                document.getElementById('cryptoContent').textContent = `NAP_USER123_${amount}`;
+            }
+        }
+
+        function setAmount(amount) {
+            document.getElementById('amount').value = amount;
+            
+            // Update payment details if a method is selected
+            const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked');
+            if (selectedMethod) {
+                showPaymentDetails(selectedMethod.value);
+            }
+        }
+
+        function confirmPayment() {
+            const amount = document.getElementById('amount').value;
+            const method = document.querySelector('input[name="paymentMethod"]:checked');
+            
+            if (!amount || amount < 10000) {
+                alert('Vui lòng nhập số tiền hợp lệ!');
+                return;
+            }
+            
+            if (!method) {
+                alert('Vui lòng chọn phương thức thanh toán!');
+                return;
+            }
+            
+            if (confirm(`Xác nhận bạn đã chuyển khoản ${parseInt(amount).toLocaleString('vi-VN')} VNĐ qua ${method.value}?`)) {
+                alert('Đã ghi nhận yêu cầu nạp tiền của bạn. Vui lòng chờ hệ thống xử lý trong 5-10 phút.');
+                
+                // Reset form
+                document.getElementById('amount').value = '';
+                document.querySelectorAll('input[name="paymentMethod"]').forEach(input => {
+                    input.checked = false;
+                });
+                document.querySelectorAll('.payment-method').forEach(el => {
+                    el.classList.remove('active');
+                });
+                document.getElementById('paymentDetails').style.display = 'none';
+            }
+        }
+
+        // Update payment details when amount changes
+        document.getElementById('amount').addEventListener('input', function() {
+            const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked');
+            if (selectedMethod && this.value >= 10000) {
+                showPaymentDetails(selectedMethod.value);
+            }
+        });
+    </script>
+
+    <!-- Backend Bundle JavaScript -->
+    <script src="public/datum/assets/js/backend-bundle.min.js"></script>
+    <script src="public/datum/assets/js/customizer.js"></script>
+    <script src="public/datum/assets/js/sidebar.js"></script>
+    <script src="public/datum/assets/js/app.js"></script>
+</body>
+</html>

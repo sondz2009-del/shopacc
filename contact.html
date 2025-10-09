@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Liên hệ - SHOPCLONE6</title>
+    <meta name="description" content="Liên hệ với SHOPCLONE6 để được hỗ trợ" />
+    <link rel="shortcut icon" href="assets/img/favicon.png" />
+    <link rel="stylesheet" href="public/datum/assets/css/backend-plugin.min.css">
+    <link rel="stylesheet" href="public/datum/assets/css/backend.css?v=1.0.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link class="main-stylesheet" href="public/sweetalert2/default.css" rel="stylesheet" type="text/css">
+    <script src="public/sweetalert2/sweetalert2.js"></script>
+    <link class="main-stylesheet" href="public/cute-alert/style.css" rel="stylesheet" type="text/css">
+    <script src="public/cute-alert/cute-alert.js"></script>
+    <script src="public/js/jquery-3.6.0.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .contact-card {
+            background: linear-gradient(135deg, #007bff, #6c757d);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .contact-info {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 24px;
+        }
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 12px 15px;
+        }
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+        .btn-submit {
+            background: linear-gradient(45deg, #007bff, #6c757d);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,123,255,0.4);
+        }
+    </style>
+</head>
+<body class="color-light">
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <div class="iq-sidebar sidebar-default">
+            <div class="iq-sidebar-logo d-flex align-items-end justify-content-between">
+                <a href="index.html" class="header-logo">
+                    <img src="assets/img/favicon.png" class="img-fluid rounded-normal light-logo" alt="logo">
+                    <span>SHOPCLONE6</span>
+                </a>
+            </div>
+            <div class="data-scrollbar" data-scroll="1">
+                <nav class="iq-sidebar-menu">
+                    <ul id="iq-sidebar-toggle" class="side-menu">
+                        <li class="px-3 pt-3 pb-2">
+                            <span class="text-uppercase small font-weight-bold">Số dư <span style="color: yellow;">0 VNĐ</span></span>
+                        </li>
+                        <li class="sidebar-layout">
+                            <a href="index.html" class="svg-icon">
+                                <i class="fas fa-home"></i>
+                                <span class="ml-2">Bảng Điều Khiển</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-layout">
+                            <a href="shop-account.html" class="svg-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="ml-2">Mua Tài Khoản</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-layout">
+                            <a href="orders.html" class="svg-icon">
+                                <i class="fas fa-history"></i>
+                                <span class="ml-2">Lịch Sử Mua Hàng</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-layout">
+                            <a href="recharge.html" class="svg-icon">
+                                <i class="fas fa-university"></i>
+                                <span class="ml-2">Nạp Tiền</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-layout active">
+                            <a href="contact.html" class="svg-icon">
+                                <i class="fas fa-address-book"></i>
+                                <span class="ml-2">Liên Hệ</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-page">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="contact-card text-center">
+                            <h2><i class="fas fa-headset mr-3"></i>Liên hệ hỗ trợ</h2>
+                            <p class="mb-0">Chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fas fa-envelope mr-2"></i>Gửi tin nhắn cho chúng tôi</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="contactForm">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="name">Họ và tên *</label>
+                                                <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="email">Email *</label>
+                                                <input type="email" class="form-control" id="email" placeholder="Nhập email" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="phone">Số điện thoại</label>
+                                                <input type="tel" class="form-control" id="phone" placeholder="Nhập số điện thoại">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="subject">Chủ đề *</label>
+                                                <select class="form-control" id="subject" required>
+                                                    <option value="">Chọn chủ đề</option>
+                                                    <option value="support">Hỗ trợ kỹ thuật</option>
+                                                    <option value="payment">Vấn đề thanh toán</option>
+                                                    <option value="product">Sản phẩm</option>
+                                                    <option value="account">Tài khoản</option>
+                                                    <option value="other">Khác</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="message">Nội dung tin nhắn *</label>
+                                        <textarea class="form-control" id="message" rows="5" placeholder="Mô tả chi tiết vấn đề của bạn..." required></textarea>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                                            <label class="form-check-label" for="agreeTerms">
+                                                Tôi đồng ý với <a href="privacy.html" target="_blank">chính sách bảo mật</a>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-submit">
+                                        <i class="fas fa-paper-plane mr-2"></i>Gửi tin nhắn
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="contact-info">
+                            <div class="contact-icon" style="background: #007bff;">
+                                <i class="fas fa-phone text-white"></i>
+                            </div>
+                            <h6 class="text-center"><strong>Hotline</strong></h6>
+                            <p class="text-center mb-0">
+                                <a href="tel:19001234" class="text-primary">1900-1234</a><br>
+                                <small class="text-muted">24/7</small>
+                            </p>
+                        </div>
+
+                        <div class="contact-info">
+                            <div class="contact-icon" style="background: #28a745;">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <h6 class="text-center"><strong>Email</strong></h6>
+                            <p class="text-center mb-0">
+                                <a href="mailto:support@shopclone6.com" class="text-success">support@shopclone6.com</a><br>
+                                <small class="text-muted">Phản hồi trong 2h</small>
+                            </p>
+                        </div>
+
+                        <div class="contact-info">
+                            <div class="contact-icon" style="background: #ffc107;">
+                                <i class="fab fa-facebook-messenger text-white"></i>
+                            </div>
+                            <h6 class="text-center"><strong>Messenger</strong></h6>
+                            <p class="text-center mb-0">
+                                <a href="https://m.me/shopclone6" target="_blank" class="text-warning">SHOPCLONE6</a><br>
+                                <small class="text-muted">Chat trực tiếp</small>
+                            </p>
+                        </div>
+
+                        <div class="contact-info">
+                            <div class="contact-icon" style="background: #17a2b8;">
+                                <i class="fab fa-telegram text-white"></i>
+                            </div>
+                            <h6 class="text-center"><strong>Telegram</strong></h6>
+                            <p class="text-center mb-0">
+                                <a href="https://t.me/shopclone6" target="_blank" class="text-info">@shopclone6</a><br>
+                                <small class="text-muted">Hỗ trợ nhanh</small>
+                            </p>
+                        </div>
+
+                        <div class="contact-info">
+                            <div class="contact-icon" style="background: #6c757d;">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <h6 class="text-center"><strong>Địa chỉ</strong></h6>
+                            <p class="text-center mb-0">
+                                123 Đường ABC<br>
+                                Quận XYZ, TP.HCM<br>
+                                <small class="text-muted">Việt Nam</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="row mt-4">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fas fa-question-circle mr-2"></i>Câu hỏi thường gặp</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="accordion" id="faqAccordion">
+                                    <div class="card">
+                                        <div class="card-header" id="faq1">
+                                            <h6 class="mb-0">
+                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1">
+                                                    Làm thế nào để mua tài khoản?
+                                                </button>
+                                            </h6>
+                                        </div>
+                                        <div id="collapse1" class="collapse show" data-parent="#faqAccordion">
+                                            <div class="card-body">
+                                                Bạn chỉ cần đăng ký tài khoản, nạp tiền và chọn sản phẩm muốn mua. Hệ thống sẽ tự động giao hàng sau khi thanh toán thành công.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-header" id="faq2">
+                                            <h6 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse2">
+                                                    Thời gian giao hàng là bao lâu?
+                                                </button>
+                                            </h6>
+                                        </div>
+                                        <div id="collapse2" class="collapse" data-parent="#faqAccordion">
+                                            <div class="card-body">
+                                                Thời gian giao hàng thường từ 1-5 phút sau khi thanh toán thành công. Trong một số trường hợp có thể lâu hơn do hệ thống đang bảo trì.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-header" id="faq3">
+                                            <h6 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse3">
+                                                    Có hỗ trợ hoàn tiền không?
+                                                </button>
+                                            </h6>
+                                        </div>
+                                        <div id="collapse3" class="collapse" data-parent="#faqAccordion">
+                                            <div class="card-body">
+                                                Chúng tôi không hỗ trợ hoàn tiền sau khi giao hàng thành công do tính chất đặc thù của sản phẩm. Tuy nhiên, chúng tôi có chính sách bảo hành 7 ngày cho các sản phẩm bị lỗi.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-header" id="faq4">
+                                            <h6 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse4">
+                                                    Làm sao để liên hệ hỗ trợ?
+                                                </button>
+                                            </h6>
+                                        </div>
+                                        <div id="collapse4" class="collapse" data-parent="#faqAccordion">
+                                            <div class="card-body">
+                                                Bạn có thể liên hệ qua hotline 1900-1234, email support@shopclone6.com, hoặc chat trực tiếp qua Messenger và Telegram. Chúng tôi hỗ trợ 24/7.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            const agreeTerms = document.getElementById('agreeTerms').checked;
+            
+            if (!name || !email || !subject || !message) {
+                alert('Vui lòng điền đầy đủ thông tin bắt buộc!');
+                return;
+            }
+            
+            if (!agreeTerms) {
+                alert('Vui lòng đồng ý với chính sách bảo mật!');
+                return;
+            }
+            
+            const btn = this.querySelector('button[type="submit"]');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Đang gửi...';
+            btn.disabled = true;
+            
+            setTimeout(function() {
+                alert('Tin nhắn đã được gửi thành công! Chúng tôi sẽ phản hồi trong thời gian sớm nhất.');
+                
+                // Reset form
+                document.getElementById('contactForm').reset();
+                btn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Gửi tin nhắn';
+                btn.disabled = false;
+            }, 2000);
+        });
+    </script>
+
+    <!-- Backend Bundle JavaScript -->
+    <script src="public/datum/assets/js/backend-bundle.min.js"></script>
+    <script src="public/datum/assets/js/customizer.js"></script>
+    <script src="public/datum/assets/js/sidebar.js"></script>
+    <script src="public/datum/assets/js/app.js"></script>
+</body>
+</html>
